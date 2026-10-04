@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { portfolio } from '@/lib/portfolio-config'
+import { withBasePath } from '@/lib/site-path'
 import { MODE_STORAGE_KEY, isPortfolioMode, type PortfolioMode } from '@/lib/portfolio-modes'
 import { THEME_STORAGE_KEY, isThemeName, type ThemeName } from '@/lib/themes'
 import { autocomplete, executeCommand, type CommandContext } from './commands'
@@ -130,7 +131,7 @@ export function Terminal() {
     if (url.startsWith('mailto:') || url.startsWith('tel:')) {
       window.location.href = url
     } else {
-      window.open(url, '_blank', 'noopener,noreferrer')
+      window.open(url.startsWith('/') ? withBasePath(url) : url, '_blank', 'noopener,noreferrer')
     }
   }, [])
 

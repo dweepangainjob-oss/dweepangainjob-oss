@@ -130,12 +130,12 @@ const commands: Command[] = [
     description: 'Open my printable resume',
     aliases: ['cv'],
     run: (_args, ctx) => {
-      ctx.openUrl('/resume')
+      ctx.openUrl('/resume/')
       return {
         output: (
           <Line tone="success">
             {'Opening resume in a new tab… If nothing happened, '}
-            <ExtLink href="/resume">{'click here'}</ExtLink>
+            <ExtLink href="/resume/">{'click here'}</ExtLink>
             {'.'}
           </Line>
         ),

@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, type ReactNode } from 'react'
+import { withBasePath } from '@/lib/site-path'
 import { cn } from '@/lib/utils'
 
 type TerminalContextValue = { run: (command: string) => void }
@@ -44,7 +45,7 @@ export function ExtLink({ href, children }: { href: string; children: ReactNode 
   const external = href.startsWith('http')
   return (
     <a
-      href={href}
+      href={href.startsWith('/') ? withBasePath(href) : href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
       onClick={(e) => e.stopPropagation()}

@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, JetBrains_Mono } from 'next/font/google'
 import { portfolio } from '@/lib/portfolio-config'
+import { withBasePath } from '@/lib/site-path'
 import { THEME_STORAGE_KEY, themeNames } from '@/lib/themes'
 import './globals.css'
 
@@ -28,17 +29,17 @@ export const metadata: Metadata = {
     description: portfolio.tagline,
     type: 'profile',
     ...(siteUrl ? { url: siteUrl.href } : {}),
-    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: `${portfolio.name} portfolio` }],
+    images: [{ url: withBasePath('/opengraph-image'), width: 1200, height: 630, alt: `${portfolio.name} portfolio` }],
   },
-  twitter: { card: 'summary_large_image', title, description: portfolio.tagline, images: ['/opengraph-image'] },
+  twitter: { card: 'summary_large_image', title, description: portfolio.tagline, images: [withBasePath('/opengraph-image')] },
   generator: 'v0.app',
   icons: {
     icon: [
-      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: withBasePath('/icon-light-32x32.png'), media: '(prefers-color-scheme: light)' },
+      { url: withBasePath('/icon-dark-32x32.png'), media: '(prefers-color-scheme: dark)' },
+      { url: withBasePath('/icon.svg'), type: 'image/svg+xml' },
     ],
-    apple: '/apple-icon.png',
+    apple: withBasePath('/apple-icon.png'),
   },
 }
 
@@ -68,7 +69,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        {process.env.VERCEL === '1' && <Analytics />}
       </body>
     </html>
   )
