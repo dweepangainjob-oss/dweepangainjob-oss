@@ -1,0 +1,194 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --color-term-page: var(--term-page);
+  --color-term-bg: var(--term-bg);
+  --color-term-surface: var(--term-surface);
+  --color-term-fg: var(--term-fg);
+  --color-term-muted: var(--term-muted);
+  --color-term-accent: var(--term-accent);
+  --color-term-accent2: var(--term-accent2);
+  --color-term-green: var(--term-green);
+  --color-term-yellow: var(--term-yellow);
+  --color-term-red: var(--term-red);
+  --color-term-border: var(--term-border);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
+
+/* Terminal themes — default is Tokyo Night */
+:root,
+[data-theme='tokyo-night'] {
+  --term-page: #0f0f17;
+  --term-bg: #1a1b26;
+  --term-surface: #16161e;
+  --term-fg: #c0caf5;
+  --term-muted: #6b7394;
+  --term-accent: #7aa2f7;
+  --term-accent2: #bb9af7;
+  --term-green: #9ece6a;
+  --term-yellow: #e0af68;
+  --term-red: #f7768e;
+  --term-border: #292e42;
+}
+
+[data-theme='catppuccin'] {
+  --term-page: #11111b;
+  --term-bg: #1e1e2e;
+  --term-surface: #181825;
+  --term-fg: #cdd6f4;
+  --term-muted: #7f849c;
+  --term-accent: #89b4fa;
+  --term-accent2: #cba6f7;
+  --term-green: #a6e3a1;
+  --term-yellow: #f9e2af;
+  --term-red: #f38ba8;
+  --term-border: #313244;
+}
+
+[data-theme='dracula'] {
+  --term-page: #191a21;
+  --term-bg: #282a36;
+  --term-surface: #21222c;
+  --term-fg: #f8f8f2;
+  --term-muted: #7b88b8;
+  --term-accent: #bd93f9;
+  --term-accent2: #ff79c6;
+  --term-green: #50fa7b;
+  --term-yellow: #f1fa8c;
+  --term-red: #ff5555;
+  --term-border: #44475a;
+}
+
+[data-theme='gruvbox'] {
+  --term-page: #141414;
+  --term-bg: #282828;
+  --term-surface: #1d2021;
+  --term-fg: #ebdbb2;
+  --term-muted: #a89984;
+  --term-accent: #83a598;
+  --term-accent2: #d3869b;
+  --term-green: #b8bb26;
+  --term-yellow: #fabd2f;
+  --term-red: #fb4934;
+  --term-border: #3c3836;
+}
+
+[data-theme='nord'] {
+  --term-page: #1f232b;
+  --term-bg: #2e3440;
+  --term-surface: #272c36;
+  --term-fg: #eceff4;
+  --term-muted: #8a95ab;
+  --term-accent: #88c0d0;
+  --term-accent2: #b48ead;
+  --term-green: #a3be8c;
+  --term-yellow: #ebcb8b;
+  --term-red: #bf616a;
+  --term-border: #3b4252;
+}
+
+[data-theme='matrix'] {
+  --term-page: #000000;
+  --term-bg: #0a0f0a;
+  --term-surface: #050805;
+  --term-fg: #b6f5b6;
+  --term-muted: #5c8f5c;
+  --term-accent: #39ff14;
+  --term-accent2: #00d4a0;
+  --term-green: #39ff14;
+  --term-yellow: #c8ff6e;
+  --term-red: #ff5f56;
+  --term-border: #1a3a1a;
+}
+
+[data-theme='paper'] {
+  --term-page: #efe7dd;
+  --term-bg: #faf4ed;
+  --term-surface: #f2e9e1;
+  --term-fg: #4a4568;
+  --term-muted: #857f99;
+  --term-accent: #286983;
+  --term-accent2: #907aa9;
+  --term-green: #3f7f8a;
+  --term-yellow: #b5761f;
+  --term-red: #b4637a;
+  --term-border: #dfd6cc;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  animation: caret-blink 1.1s step-end infinite;
+}
+
+.term-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--term-border) transparent;
+}
+
+.term-glow {
+  text-shadow: 0 0 18px color-mix(in oklab, var(--term-accent) 45%, transparent);
+}
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}
