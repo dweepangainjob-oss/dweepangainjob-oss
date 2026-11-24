@@ -70,8 +70,8 @@ export const portfolio: PortfolioConfig = {
     'Computer Science engineering graduate with four internships and five end-to-end AI projects. Experienced in Python, machine learning, NLP, LLM integration (LangChain, RAG), and full-stack development with React and FastAPI.',
   ],
   availability: {
-    open: false,
-    message: 'Availability not specified in the resume.',
+    open: true,
+    message: 'Open to AI/ML, Full-Stack, and software engineering opportunities.',
   },
   email: 'dweepangainjob@gmail.com',
   phone: '+91 8624899433',
